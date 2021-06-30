@@ -1,0 +1,50 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "lib": "rm -rf lib/ && NODE_ENV=production babel src/ -d lib/ && npm run lib:esm",
+    "lib:esm": "find lib/ -type f -name *.js -exec sed -i'' -e 's|@babel/runtime/helpers/esm|@babel/runtime/helpers|g' {} +",
+    "start": "react-scripts start  && npm run lib",
+    "build": "react-scripts build && npm run lib",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs"
+    ],
+    "presets": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
